@@ -58,7 +58,7 @@ def page1():
             "## How to use\n"
             "1. Enter the title for paper 📄\n"
             "2. Summarize your key findings/metrics 🔎\n"
-            "3. Recieve a professional paper abstract ✅\n"
+            "3. Recieve a research paper abstract ✅\n"
         )
     st.markdown("---")
     title = st.text_input("Paper Title", placeholder="Enter paper title")
@@ -93,16 +93,15 @@ def page2():
     st.markdown(
         "The project aims to match the style and tone of top research papers. This can lead to some interesting results when mixed with the right title.  "
     )
-    st.text_input("Title", value="Robot Laser Goose", disabled=True)
+    st.text_input("Title", value="Robot Goose Elimination", disabled=True)
     st.text_input(
         "Key Findings",
-        value="95% success rate in deterring Geese. Deep learning target recognition. 500m range",
+        value="90% effective. Deep Reinforcement learning. 500m range",
         disabled=True,
     )
     st.info(
         """
-        The challenge of effectively deterring geese in various environments has been a persistent issue. This paper introduces a novel solution: the Robot Laser Goose, a system that leverages deep learning for target recognition and operates within a **500m range**. The system utilizes a combination of RGB-D camera and radar sensor modalities, similar to previous studies on object interception. However, our focus is on the identification and deterrence of geese, achieving a remarkable **95% success rate**. The Robot Laser Goose employs artificial neural networks for both geese detection and deterrence strategy prediction. The system's robustness and adaptability are demonstrated through its ability to operate in diverse environments and conditions. Furthermore, the Robot Laser Goose outperforms traditional methods in terms of range, accuracy, and success rate. This research contributes to the broader field of robotics and wildlife management, providing a scalable and efficient solution for geese deterrence. The findings also open up new avenues for the application of **deep learning** in wildlife interaction and management.    
-        """
+        The challenge of managing geese populations in urban environments has been a persistent issue. This paper presents a novel solution to this problem through the development and implementation of a robotic system, capable of eliminating geese within a **500m range** with a **90% effectiveness rate**. The system utilizes **deep reinforcement learning** to identify, track, and manage the geese population. The paper compares two methodologies: a baseline model that uses color filtering for object detection and a deep learning model that employs artificial neural networks for both object detection and action execution. The deep learning model outperforms the baseline model, demonstrating a significant improvement in effectiveness. The paper also explores the ethical considerations and potential impacts of this technology on the ecosystem. The results indicate that the use of autonomous robots, coupled with deep reinforcement learning, provides a viable and efficient solution for managing geese populations in urban environments. This research opens up new avenues for the application of robotics and artificial intelligence in wildlife management and urban ecology.        """
     )
     
     st.markdown(
@@ -125,7 +124,7 @@ def page3():
     st.markdown("""
     ## Overview
 
-   This project demonstrates a serverless architecture for generating professional paper abstracts using **Large Language Models (LLMs)**. It employs a **Retrieval-Augmented Generation (RAG)** approach, integrating LLM prompt engineering with queries to a vector database for contextual relevance and accuracy. This solution showcases practices and tools that are crucial for modern, scalable applications. \\
+   This project demonstrates a serverless architecture for generating research paper abstracts using **Large Language Models (LLMs)**. It employs a **Retrieval-Augmented Generation (RAG)** approach, integrating LLM prompt engineering with queries to a vector database for contextual relevance and accuracy. The solution uses practices and tools that are crucial for modern, scalable applications. \\
     \\
     At the heart of this project lies the **RAG** approach, which significantly enhances the capability of LLMs by incorporating a retrieval step into the generation process. This methodology involves querying a vector database to find relevant information that contextually enriches the model's output. In the context of this application, when the user requests an abstract, RAG gets the 3 most relevant exisitng abstracts from the vector store, then sends them to the LLM with the intital prompt to increase the quality of the result.
 
@@ -156,10 +155,10 @@ def page3():
     1. **Web Application**: A streamlit UI hosted on the public cloud serves as the front-end to take paper titles and findings
     2. **Amazon API Gateway**: Manages and routes incoming API requests to the lambda function.
     3. **AWS Lambda**: Handles incoming API request: \\
-    **3.1.** Process request to extract paper title and findings submitted by the user\\
-    **3.2.** Search S3 bucket using FAISS to find relevant paper abstracts \\
-    **3.3.** Makes call to OPEN AI API to genrate abstract, call is augmented with relevant abstracts from 3.2 for reference \\
-    **3.4.** Return the generated paper title and abstract
+        **3.1.** Process request to extract paper title and findings submitted by the user\\
+        **3.2.** Search S3 bucket using FAISS to find papers similiar to users query \\
+        **3.3.** The function creates a prompt, with the user's query and the similiar abstracts as context. It then asks the OPEN AI API to genrate a response. \\
+        **3.4.** The function returns the response to the API gateway, updating the user UI \
 
     4. **Vector Store Updates**: The S3 vector store is updated offline and uses FAISS. FAISS is a highly efficient library for similarity search and clustering of dense vectors that scales to billions of vectors. The raw text data containing paper titles and abstracts is stored in an offline DB.
 
@@ -197,10 +196,10 @@ def main():
         st.markdown("---")
         st.markdown("# About")
         st.markdown(
-            "📖 Abstract GPT allows you to quickly generate professional paper summaries given a title and key findings. "
+            "📖 Abstract GPT allows you to quickly generate research paper summaries given a title and key findings. "
         )
 
-        st.markdown("Made by [Clay Ndugga](https://www.linkedin.com/in/clay-ndugga/)")
+        st.markdown("Made by [Clay Ndugga](https://clayndugga.github.io/)")
         st.markdown("---")
 
     # Page rendering

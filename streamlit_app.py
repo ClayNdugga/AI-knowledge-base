@@ -73,6 +73,7 @@ def page1():
         else:
             # Make the API request
             response = make_api_request(title, contexts, include_vector_db)
+            print(response)
             if "abstracts" in response and include_vector_db:
                 with st.expander("Relevant Paper Abstracts", expanded=False):
                     for res in response["abstracts"]:
@@ -91,19 +92,19 @@ def page2():
 
     st.subheader("Example 1")
     st.markdown(
-        "The project aims to match the style and tone of top research papers. This can lead to some interesting results when mixed with the right title.  "
+        "The project aims to match the style and tone of top research papers."
     )
-    st.text_input("Title", value="Robot Goose Elimination", disabled=True)
+
+    st.text_input("Title", value="Transformer Architecture improves predictive analytics", disabled=True)
     st.text_input(
         "Key Findings",
-        value="90% effective. Deep Reinforcement learning. 500m range",
+        value="10% improvement over current methods. Embeddings capture feature crosses.",
         disabled=True,
     )
     st.info(
         """
-        The challenge of managing geese populations in urban environments has been a persistent issue. This paper presents a novel solution to this problem through the development and implementation of a robotic system, capable of eliminating geese within a **500m range** with a **90% effectiveness rate**. The system utilizes **deep reinforcement learning** to identify, track, and manage the geese population. The paper compares two methodologies: a baseline model that uses color filtering for object detection and a deep learning model that employs artificial neural networks for both object detection and action execution. The deep learning model outperforms the baseline model, demonstrating a significant improvement in effectiveness. The paper also explores the ethical considerations and potential impacts of this technology on the ecosystem. The results indicate that the use of autonomous robots, coupled with deep reinforcement learning, provides a viable and efficient solution for managing geese populations in urban environments. This research opens up new avenues for the application of robotics and artificial intelligence in wildlife management and urban ecology.        """
-    )
-    
+        The transformative potential of the Transformer architecture in the realm of predictive analytics is the focal point of this research paper. The study demonstrates a significant **10% improvement over existing methodologies**, with a particular emphasis on the ability of **embeddings to capture feature crosses**. The paper explores the application of Transformer architecture in predictive analytics, drawing parallels with its revolutionary impact in the field of natural language processing (NLP). The research identifies key components of the Transformer architecture that contribute to the bulk of the computation and proposes optimizations to enhance their performance. The paper also delves into the challenges of predicting the behavior of multiple agents in dynamic environments, and how the Transformer architecture can be leveraged to produce consistent futures that account for interactions between agents. The research further investigates the application of Transformer-like models on time series data, addressing issues such as susceptibility to anomalies, context awareness, and space complexity. The paper concludes with an evaluation of the effectiveness of these models, highlighting their potential to improve performance and learn generalized knowledge in the field of predictive analytics.    )
+        """)
     st.markdown(
         "The generated abstract correctly contains the key findings shown in bold, while maintaining the professional layout, tone, and sentence strcuture from top papers."
     )
